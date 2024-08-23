@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Uploader</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f0f0;
+            color: #333;
+            font-family: 'Arial', sans-serif;
+        }
+        .upload-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ccc;
+            position: relative;
+        }
+        .upload-header {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .upload-header h1 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .upload-header p {
+            font-size: 1rem;
+            color: #666;
+        }
+        .form-label {
+            color: #333;
+        }
+        .form-control {
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            color: #333;
+        }
+        .form-control::placeholder {
+            color: #999;
+        }
+        .btn-primary {
+            background-color: #333;
+            border-color: #333;
+            padding: 15px 30px;
+            font-size: 1.25rem;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+        }
+        .btn-primary:hover {
+            background-color: #555;
+            border-color: #555;
+            transform: scale(1.05);
+        }
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="upload-container">
+    <div class="upload-header">
+        <h1>Upload Your File</h1>
+        <p>Please choose an Excel file to upload and review the data before submission.</p>
+    </div>
+
+    <form action="{% url 'upload_file' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="fileInput" class="form-label">Select Your File:</label>
+            <input type="file" class="form-control" id="fileInput" name="file" accept=".xls, .xlsx" required>
+        </div>
+        <div class="btn-container">
+            <button type="submit" class="btn btn-primary" style="color:white;">Upload</button>
+        </div>
+    </form>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>
